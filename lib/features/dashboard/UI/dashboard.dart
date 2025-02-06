@@ -49,7 +49,7 @@ class _DashboardPageState extends State<DashboardPage> {
                       child: Image.network(
                         '${item.thumbnailUrl}',
                         fit: BoxFit.cover,
-                        errorBuilder: (context, error, stackTrace) {
+                        errorBuilder: (context,error,stackTrace){
                           return Icon(Icons.error);
                         },
                       ),
