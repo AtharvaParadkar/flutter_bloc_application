@@ -10,12 +10,12 @@ class DashboardPage extends StatefulWidget {
 }
 
 class _DashboardPageState extends State<DashboardPage> {
-  final DashboardBloc dashboardBloc = DashboardBloc();
+  final DashboardBloc _dashboardBloc = DashboardBloc();
 
   @override
   void initState() {
     super.initState();
-    dashboardBloc.add(PhotoApiFetchEvent());
+    _dashboardBloc.add(PhotoApiFetchEvent());
   }
 
   @override
@@ -26,13 +26,13 @@ class _DashboardPageState extends State<DashboardPage> {
         automaticallyImplyLeading: false,
       ),
       body: BlocBuilder<DashboardBloc, DashboardState>(
-        bloc: dashboardBloc,
+        bloc: _dashboardBloc,
         builder: (context, state) {
-          switch (state.photoApiStatus) {
-            case PhotoApiStatus.loading:
+          switch (state.runtimeType) {
+            case const (PhotoApiLoadingState):
               return Center(child: CircularProgressIndicator());
-
-            case PhotoApiStatus.success:
+            case const (PhotoApiSuccessState):
+              state as PhotoApiSuccessState;
               return ListView.builder(
                 itemCount: state.photoList.length,
                 itemBuilder: (context, index) {
@@ -49,7 +49,7 @@ class _DashboardPageState extends State<DashboardPage> {
                       child: Image.network(
                         '${item.thumbnailUrl}',
                         fit: BoxFit.cover,
-                        errorBuilder: (context,error,stackTrace){
+                        errorBuilder: (context, error, stackTrace) {
                           return Icon(Icons.error);
                         },
                       ),
@@ -57,8 +57,13 @@ class _DashboardPageState extends State<DashboardPage> {
                   );
                 },
               );
-            case PhotoApiStatus.failure:
-              return Center(child: Text(state.errorMessage));
+            case const (PhotoApiFailureState):
+              state as PhotoApiFailureState;
+              return Center(child: Text(state.fail));
+            default:
+              return Center(
+                child: Text('No Data!'),
+              );
           }
         },
       ),
