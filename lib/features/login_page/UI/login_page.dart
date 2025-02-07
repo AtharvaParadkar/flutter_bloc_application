@@ -32,7 +32,7 @@ class _LoginPageState extends State<LoginPage> {
               shape: StadiumBorder(),
               backgroundColor: Colors.green,
             ));
-            Navigator.push(
+            Navigator.pushReplacement(
               context,
               MaterialPageRoute(builder: (context) => DashboardPage()),
             );
