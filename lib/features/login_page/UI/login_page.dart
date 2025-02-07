@@ -15,7 +15,7 @@ class _LoginPageState extends State<LoginPage> {
   final TextEditingController _usernameController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
   bool _obscureText = true;
-  final LoginPageBloc loginPageBloc = LoginPageBloc();
+  final LoginPageBloc _loginPageBloc = LoginPageBloc();
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +24,7 @@ class _LoginPageState extends State<LoginPage> {
         title: Text('Login'),
       ),
       body: BlocConsumer<LoginPageBloc, LoginPageState>(
-        bloc: loginPageBloc,
+        bloc: _loginPageBloc,
         listener: (context, state) {
           if (state is LoginPageSuccessState) {
             ScaffoldMessenger.of(context).showSnackBar(SnackBar(
@@ -125,14 +125,14 @@ class _LoginPageState extends State<LoginPage> {
                                         if (_formKey.currentState!.validate()) {
                                           debugPrint(
                                               '${_usernameController.text} ${_passwordController.text}');
-                                          loginPageBloc.add(
-                                                LoginSubmitEvent(
-                                                  username:
-                                                      _usernameController.text,
-                                                  password:
-                                                      _passwordController.text,
-                                                ),
-                                              );
+                                          _loginPageBloc.add(
+                                            LoginSubmitEvent(
+                                              username:
+                                                  _usernameController.text,
+                                              password:
+                                                  _passwordController.text,
+                                            ),
+                                          );
                                         }
                                       },
                                       style: ElevatedButton.styleFrom(

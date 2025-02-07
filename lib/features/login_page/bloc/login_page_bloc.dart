@@ -2,7 +2,7 @@ import 'dart:async';
 
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
-import 'package:meta/meta.dart';
+import 'package:flutter/material.dart';
 
 part 'login_page_event.dart';
 
@@ -15,9 +15,6 @@ class LoginPageBloc extends Bloc<LoginPageEvent, LoginPageState> {
 
   FutureOr<void> onLoginSubmitted(
       LoginSubmitEvent event, Emitter<LoginPageState> emit) async {
-    if (event.username.isEmpty || event.password.isEmpty) {
-      emit(LoginPageFailureState('Invalid!'));
-    }
     emit(LoginPageLoadingState());
     try {
       await Future.delayed(Duration(seconds: 1));
