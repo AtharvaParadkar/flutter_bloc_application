@@ -63,7 +63,6 @@ class _DashboardPageState extends State<DashboardPage> {
                       context,
                       MaterialPageRoute(
                         builder: (context) => FullScreen(
-                          dashboardBloc: _dashboardBloc,
                           item: item,
                         ),
                       ),
