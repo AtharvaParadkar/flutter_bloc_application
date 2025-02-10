@@ -2,8 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc_application/features/dashboard/model/photo_api_model.dart';
 
 class FullScreen extends StatelessWidget {
-  const FullScreen(
-      {super.key, required this.item});
+  const FullScreen({super.key, required this.item});
 
   final PhotoApiModel item;
 
@@ -30,7 +29,7 @@ class FullScreen extends StatelessWidget {
             left: 0,
             right: 0,
             child: AppBar(
-              title: Text('${item.title}'),
+              // title: Text('${item.title}'),
               backgroundColor: Colors.transparent,
               elevation: 0,
               leading: IconButton(

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_bloc_application/features/dashboard/UI/fullScreen.dart';
 import 'package:flutter_bloc_application/features/dashboard/bloc/dashboard_bloc.dart';
+import 'package:flutter_bloc_application/routes/routes.dart';
 
 class DashboardPage extends StatefulWidget {
   const DashboardPage({super.key});
@@ -43,29 +43,26 @@ class _DashboardPageState extends State<DashboardPage> {
                       '${item.iId}',
                       style: TextStyle(fontWeight: FontWeight.bold),
                     ),
-                    subtitle: Text('${item.title}'),
-                    leading: SizedBox(
-                      height: 90,
-                      width: 100,
-                      child: Hero(
-                        tag: item.iId!,
-                        transitionOnUserGestures: true,
-                        child: Image.network(
-                          '${item.thumbnailUrl}',
-                          fit: BoxFit.cover,
-                          errorBuilder: (context, error, stackTrace) {
-                            return Icon(Icons.error);
-                          },
-                        ),
-                      ),
-                    ),
-                    onTap: () => Navigator.push(
+                    // subtitle: Text('${item.title}'),
+                    // leading: SizedBox(
+                    //   height: 90,
+                    //   width: 100,
+                    //   child: Hero(
+                    //     tag: item.iId!,
+                    //     transitionOnUserGestures: true,
+                    //     child: Image.network(
+                    //       '${item.thumbnailUrl}',
+                    //       fit: BoxFit.cover,
+                    //       errorBuilder: (context, error, stackTrace) {
+                    //         return Icon(Icons.error);
+                    //       },
+                    //     ),
+                    //   ),
+                    // ),
+                    onTap: () => Navigator.pushNamed(
                       context,
-                      MaterialPageRoute(
-                        builder: (context) => FullScreen(
-                          item: item,
-                        ),
-                      ),
+                      RouteConstants.titleScreen,
+                      arguments: item,
                     ),
                   );
                 },

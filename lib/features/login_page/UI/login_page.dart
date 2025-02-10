@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_bloc_application/features/dashboard/UI/dashboard.dart';
 import 'package:flutter_bloc_application/features/login_page/bloc/login_page_bloc.dart';
+import 'package:flutter_bloc_application/routes/routes.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -32,9 +32,9 @@ class _LoginPageState extends State<LoginPage> {
               shape: StadiumBorder(),
               backgroundColor: Colors.green,
             ));
-            Navigator.pushReplacement(
+            Navigator.pushReplacementNamed(
               context,
-              MaterialPageRoute(builder: (context) => DashboardPage()),
+              RouteConstants.dashboardScreen,
             );
           } else if (state is LoginPageFailureState) {
             ScaffoldMessenger.of(context).showSnackBar(SnackBar(

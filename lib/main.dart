@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc_application/features/login_page/UI/login_page.dart';
+import 'package:flutter_bloc_application/routes/routes.dart';
 
 void main() => runApp(MyApp());
 
@@ -14,7 +14,13 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         brightness: Brightness.dark,
       ),
-      home: LoginPage(),
+      initialRoute: RouteConstants.loginScreen,
+      onGenerateRoute: RouteGenerator.generateRoute,
+      onUnknownRoute: (settings) => MaterialPageRoute(
+        builder: (_) => Scaffold(
+          body: Center(child: Text('Routes not found: ${settings.name}')),
+        ),
+      ),
     );
   }
 }
