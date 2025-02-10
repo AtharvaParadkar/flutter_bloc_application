@@ -22,7 +22,7 @@ class RouteGenerator {
               slideTransition(context, animation, child),
         );
       case RouteConstants.titleScreen:
-        if (settings.arguments is PhotoApiModel) {
+        if (args is PhotoApiModel) {
           final item = settings.arguments as PhotoApiModel;
           return PageRouteBuilder(
             pageBuilder: (context, animation, _) => TitleScreen(item: item),
@@ -33,7 +33,7 @@ class RouteGenerator {
         }
         return _errorRoute();
       case RouteConstants.imageScreen:
-        if (settings.arguments is PhotoApiModel) {
+        if (args is PhotoApiModel) {
           final item = settings.arguments as PhotoApiModel;
           return PageRouteBuilder(
             pageBuilder: (context, animation, _) => ImageScreen(item: item),
@@ -44,7 +44,7 @@ class RouteGenerator {
         }
         return _errorRoute();
       case RouteConstants.fullscreen:
-        if (settings.arguments is PhotoApiModel) {
+        if (args is PhotoApiModel) {
           final item = settings.arguments as PhotoApiModel;
           return MaterialPageRoute(
             builder: (_) => FullScreen(item: item),
